@@ -1,0 +1,9 @@
+========[Docker]=======
+docker run -it --privileged --name ubuntu -p 8000:8000 -p 3000:3000 -v D:\docker:/upload ubuntu:latest bash
+
+to install node:
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+source 	~/.bashrc
+nvm install 12
