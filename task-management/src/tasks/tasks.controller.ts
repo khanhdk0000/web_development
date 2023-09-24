@@ -19,42 +19,52 @@ import { GetTasksFilterDto } from './dto/get-task.dto';
 export class TasksController {
   constructor(private taskService: TasksService) {}
 
-  @Get()
-  getTasks(@Query() filterDto: GetTasksFilterDto): Task[] {
-    if (Object.keys(filterDto).length) {
-      return this.taskService.getTasksWithFilter(filterDto);
-    } else {
-      return this.taskService.getAllTasks();
-    }
-  }
+  // @Get()
+  // getTasks(@Query() filterDto: GetTasksFilterDto): Task[] {
+  //   if (Object.keys(filterDto).length) {
+  //     return this.taskService.getTasksWithFilter(filterDto);
+  //   } else {
+  //     return this.taskService.getAllTasks();
+  //   }
+  // }
 
-  // whatever input will be parsed as body
+  // // whatever input will be parsed as body
+
+  // // @Post()
+  // // createTask(@Body('title') title, @Body('description') description): Task {
+  // //   return this.taskService.createTask(title, description);
+  // // }
 
   // @Post()
-  // createTask(@Body('title') title, @Body('description') description): Task {
-  //   return this.taskService.createTask(title, description);
+  // createTask(@Body() createTaskDTO: CreateTaskDTO): Task {
+  //   return this.taskService.createTask(createTaskDTO);
   // }
 
   @Post()
-  createTask(@Body() createTaskDTO: CreateTaskDTO): Task {
+  createTask(@Body() createTaskDTO: CreateTaskDTO): Promise<Task> {
     return this.taskService.createTask(createTaskDTO);
   }
 
   @Get('/:id')
-  getTaskById(@Param('id') id: string): Task {
+  getTaskById(@Param('id') id: string): Promise<Task> {
     return this.taskService.getTaskById(id);
   }
 
-  @Delete('/:id')
-  deleteTaskById(@Param('id') id: string) {
-    this.taskService.deleteTaskById(id);
-  }
+  // @Get('/:id')
+  // getTaskById(@Param('id') id: string): Task {
+  //   return this.taskService.getTaskById(id);
+  // }
 
-  @Patch('/:id/haha')
-  updateTaskStatusById(
-    @Param('id') id: string,
-    @Body() updateTaskDTO: UpdateTaskDTO,
-  ): Task {
-    return this.taskService.patchTaskStatus(id, updateTaskDTO);
-  }
+  // @Delete('/:id')
+  // deleteTaskById(@Param('id') id: string) {
+  //   this.taskService.deleteTaskById(id);
+  // }
+
+  // @Patch('/:id/haha')
+  // updateTaskStatusById(
+  //   @Param('id') id: string,
+  //   @Body() updateTaskDTO: UpdateTaskDTO,
+  // ): Task {
+  //   return this.taskService.patchTaskStatus(id, updateTaskDTO);
+  // }
 }
