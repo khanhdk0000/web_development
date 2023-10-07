@@ -14,6 +14,7 @@ import {
 import { Request, Response } from 'express';
 import { CreateUserDto } from './dto/createUser.dto';
 import { UsersService } from 'src/users/services/users/users.service';
+import { ValidateCreateUserPipe } from 'src/users/pipes/validate-create-user/validate-create-user.pipe';
 
 @Controller('users')
 export class UsersController {
@@ -32,7 +33,7 @@ export class UsersController {
 
   @Post('posts')
   @UsePipes(new ValidationPipe())
-  createUser(@Body() userData: CreateUserDto) {
+  createUser(@Body(ValidateCreateUserPipe) userData: CreateUserDto) {
     console.log(userData);
     return {};
   }
