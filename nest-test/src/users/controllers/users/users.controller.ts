@@ -22,6 +22,7 @@ export class UsersController {
 
   @Get()
   getUsers() {
+    console.log(process.env.npm_package_name);
     return this.userService.fetchUsers();
   }
 
