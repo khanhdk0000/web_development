@@ -1,14 +1,59 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+} from '@nestjs/common';
+import { CreatePostDto } from 'src/users/dto/CreatePost.dto';
+import { CreateUserDto } from 'src/users/dto/CreateUser.dto';
+import { UserProfileDto } from 'src/users/dto/CreateUserProfile.dto';
+import { UpdateUserDto } from 'src/users/dto/UpdateUser.dto';
 import { UsersService } from 'src/users/service/users/users.service';
 
 @Controller('users')
 export class UsersController {
   constructor(private userService: UsersService) {}
   @Get()
-  getUsers() {}
+  async getUsers() {
+    const users = await this.userService.findUsers();
+    return users;
+  }
 
-  // @Post()
-  // createUsers(@Body() createUserDto: CreateUserDto) {
-  //   this.userService.createUsers();
-  // }
+  @Post()
+  createUsers(@Body() createUserDto: CreateUserDto) {
+    return this.userService.createUsers(createUserDto);
+  }
+
+  @Put(':id')
+  async updateUser(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateDto: UpdateUserDto,
+  ) {
+    await this.userService.updateUser(id, updateDto);
+  }
+
+  @Delete(':id')
+  async deleteUser(@Param('id', ParseIntPipe) id: number) {
+    await this.userService.deleteUser(id);
+  }
+
+  @Post(':id/profiles')
+  createUserProfile(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() userProfile: UserProfileDto,
+  ) {
+    return this.userService.createUserProfile(id, userProfile);
+  }
+
+  @Post(':id/posts')
+  createPost(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() createPost: CreatePostDto,
+  ) {
+    return this.userService.createPost(id, createPost);
+  }
 }
