@@ -1,16 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import App from './App';
 // import './index.css';
 // import App from './App';
 // import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-function App() {
-  let message = `helllu
-  sasdad;
-  `
-  return <h1>{message}</h1>
-}
 root.render(
   <React.StrictMode>
     <App />
