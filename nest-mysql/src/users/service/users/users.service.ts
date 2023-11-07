@@ -59,4 +59,8 @@ export class UsersService {
     const newPost = this.postRepo.create({ ...param, user });
     return await this.postRepo.save(newPost);
   }
+
+  findUser(username: string) {
+    return this.userRepo.findOneBy({ username: username });
+  }
 }
