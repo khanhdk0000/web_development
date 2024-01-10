@@ -3,19 +3,8 @@ import { AppModule } from './app.module';
 import * as session from 'express-session';
 import * as passport from 'passport';
 import { TypeormStore } from 'connect-typeorm';
-import { DataSource, getConnection, getRepository } from 'typeorm';
-import { Post, Session } from '@nestjs/common';
+import { DataSource } from 'typeorm';
 import { SessionEntity } from './typeorm/Session';
-import { User } from './typeorm/entities/User';
-import { Profile } from './typeorm/entities/Profile';
-import { pgOptions } from './config/postgres';
-
-const datasource = new DataSource({
-  type: 'mysql',
-  synchronize: true,
-  entities: [User, Profile, Post, SessionEntity],
-  ...pgOptions,
-});
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -29,7 +18,7 @@ async function bootstrap() {
       cookie: {
         maxAge: 60000,
       },
-      // store: new TypeormStore().connect(sessionRepository),
+      store: new TypeormStore().connect(sessionRepository),
     }),
   );
   app.use(passport.initialize());
