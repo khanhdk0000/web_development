@@ -10,6 +10,7 @@ import { AuthModule } from './auth/auth.module';
 import { pgOptions } from './config/postgres';
 import { SessionEntity } from './typeorm/Session';
 import { PassportModule } from '@nestjs/passport';
+import { PaymentsModule } from './payments/payments.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { PassportModule } from '@nestjs/passport';
     UsersModule,
     AuthModule,
     PassportModule.register({ session: true }),
+    PaymentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
