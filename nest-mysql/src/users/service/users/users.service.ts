@@ -1,9 +1,9 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Post } from 'src/typeorm/entities/Posts';
-import { Profile } from 'src/typeorm/entities/Profile';
-import { User } from 'src/typeorm/entities/User';
-import { encodePassword } from 'src/utils/bcrypt';
+import { Post } from '../../../typeorm/entities/Posts';
+import { Profile } from '../../../typeorm/entities/Profile';
+import { User } from '../../../typeorm/entities/User';
+import { encodePassword } from '../../../utils/bcrypt';
 import {
   CreatePostParam,
   CreateUserParam,
@@ -30,6 +30,7 @@ export class UsersService {
 
   createUsers(params: CreateUserParam) {
     const password = encodePassword(params.password);
+    console.log(password);
     const newUser = this.userRepo.create({
       ...params,
       createdAt: new Date(),
