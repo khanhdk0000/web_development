@@ -6,8 +6,7 @@ import {
   Session,
   UseGuards,
 } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
-import { AuthenticatedGuard, LocalGuard } from 'src/auth/utils/LocalGuard';
+import { AuthenticatedGuard, LocalGuard } from '../../utils/LocalGuard';
 
 @Controller('auth')
 export class AuthController {

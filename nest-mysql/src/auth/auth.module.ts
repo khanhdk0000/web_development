@@ -1,11 +1,11 @@
-import { Module, Session } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { AuthController } from './controllers/auth/auth.controller';
 import { AuthService } from './services/auth/auth.service';
-import { UsersService } from 'src/users/service/users/users.service';
+import { UsersService } from '../users/service/users/users.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from 'src/typeorm/entities/User';
-import { Profile } from 'src/typeorm/entities/Profile';
-import { Post } from 'src/typeorm/entities/Posts';
+import { User } from '../typeorm/entities/User';
+import { Profile } from '../typeorm/entities/Profile';
+import { Post } from '../typeorm/entities/Posts';
 import { LocalStrategy } from './utils/LocalStrategy';
 import { SessionSerializer } from './utils/sessionSerializer';
 
