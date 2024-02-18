@@ -11,6 +11,7 @@ import { pgOptions } from './config/postgres';
 import { SessionEntity } from './typeorm/Session';
 import { PassportModule } from '@nestjs/passport';
 import { PaymentsModule } from './payments/payments.module';
+import { GatewayModule } from './gateway/gateway.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { PaymentsModule } from './payments/payments.module';
     AuthModule,
     PassportModule.register({ session: true }),
     PaymentsModule,
+    GatewayModule,
   ],
   controllers: [AppController],
   providers: [AppService],
