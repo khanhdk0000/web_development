@@ -1,1 +1,1 @@
-### Collections of self-learn repo from internent
+### Collections of self-learn repo from internet
